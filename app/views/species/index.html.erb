@@ -1,7 +1,16 @@
 <h1>Wildlife Tracker</h1>
 
 <ul>
-  <% @species.each do |specimen| %>
-    <li><%= specimen.name %></li>
+  <% @species.each do |specie| %>
+    <li><a href="/species/<%=specie.id%>"><%= specie.name %></a></li>
   <% end %>
 </ul>
+
+<h2>Add Species</h2>
+
+<form action="/species/" method="post">
+  <!-- <input name="_method" type="hidden" value="post"> -->
+  <label for="specie_name">Name</label>
+  <input id="specie_name" name="specie[name]" type="text">
+  <button>Add species</button>
+</form>
