@@ -14,5 +14,13 @@
   <label for="sighting_date">Date:</label>
   <input id="sighting_date" name="sighting[date]" type="text" value="<%= @sighting.date %>">
   <input id="sighting_specie_id" name="sighting[specie_id]" type="hidden" value="<%= @sighting.specie_id %>">
+  <select name="sighting[region_id]">
+    <option value="<%= @sighting.region_id %>" selected><%= Region.find(@sighting.region_id).name %></option>
+    <% Region.unselected_regions(@sighting).each do |region| %>
+      <option value="<%= region.id %>"><%= region.name %></option>
+    <% end %>
+  </select>
+  <label for="sighting_location">Location:</label>
+  <input id="sighting_location" name="sighting[location]" type="text" value="<%= @sighting.location %>">
   <br /><button>Update Sighting</button>
 </form>

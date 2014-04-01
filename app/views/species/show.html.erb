@@ -26,7 +26,8 @@
 <h3>Sightings</h3>
 <ul>
   <% @specie.sightings.each do |sighting| %>
-    <li><%= sighting.date.strftime("%b %e, %Y") %>  |  <a href="/species/<%= @specie.id %>/sightings/<%= sighting.id %>/edit">EDIT</a>
+    <li><%= sighting.location %> in the <%= sighting.region.name %> region, on <%= sighting.date.strftime("%b %e, %Y") %>
+      <br /><a href="/species/<%= @specie.id %>/sightings/<%= sighting.id %>/edit">EDIT</a>    |
       <a href="/species/<%= @specie.id %>/sightings/<%= sighting.id %>"
                 data-confirm="Are You Sure?"
                 data-method="delete"
@@ -39,7 +40,14 @@
 <form action="/species/<%= @specie.id %>" method="post">
   <label for="sighting_date">Date:</label>
   <input id="sighting_date" name="sighting[date]" type="text">
-  <input id="sighting_specie" name="sighting[species_id]" type="hidden" value="<%= @specie.id %>">
+  <input id="sighting_specie" name="sighting[specie_id]" type="hidden" value="<%= @specie.id %>">
+  <select name="sighting[region_id]">
+    <% Region.all.each do |region| %>
+      <option value="<%= region.id %>"><%= region.name %></option>
+    <% end %>
+  </select>
+  <label for="sighting_location">Location:</label>
+  <input id="sighting_location" name="sighting[location]" type="text">
   <br /><button>Add a Sighting</button>
 </form>
 

@@ -39,6 +39,7 @@ class SpeciesController < ApplicationController
 
   def destroy
     @specie = Specie.find(params[:id])
+    @specie.sightings.each { |sighting| sighting.destroy }
     @specie.destroy
     render('species/destroy.html.erb')
   end

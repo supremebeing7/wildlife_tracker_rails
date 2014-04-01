@@ -6,12 +6,9 @@ class SightingsController < ApplicationController
   end
 
   def create
-    @sighting = Sighting.new(params[:sighting])
-    if @sighting.save
-      redirect_to('species/<%= Specie.find(@sighting.species_id).id %>')
-    else
-      render('species/show.html.erb')
-    end
+    @sighting = Sighting.create(params[:sighting])
+    @specie = Specie.find(@sighting.specie_id)
+    render('species/show.html.erb')
   end
 
   def edit
