@@ -43,9 +43,18 @@
   <% end %>
 </ul>
 
+<% if @sighting.errors.any? %>
+  <h3>Please fix the following errors:</h3>
+  <ul>
+    <% @sighting.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h3>Add a Sighting</h3>
 <form action="/species/<%= @specie.id %>" method="post">
-  <label for="sighting_date">Date:</label>
+  <label for="sighting_date">Date (YYYY-MM-DD):</label>
   <input id="sighting_date" name="sighting[date]" type="text">
   <input id="sighting_specie" name="sighting[specie_id]" type="hidden" value="<%= @specie.id %>">
   <select name="sighting[region_id]">

@@ -16,6 +16,7 @@ class SpeciesController < ApplicationController
 
   def show
     @specie = Specie.find(params[:id])
+    @sighting = Sighting.new
     render('species/show.html.erb')
   end
 
