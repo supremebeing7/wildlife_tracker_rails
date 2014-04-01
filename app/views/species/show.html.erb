@@ -15,21 +15,25 @@
   <input name="_method" type="hidden" value="patch">
   <label for="specie_name">Name:</label>
   <input id="specie_name" name="specie[name]" type="text" value="<%= @specie.name %>">
-  <br /><button>Rename Species</button>
+  <button>Rename Species</button>
 </form>
+<a href="/species/<%= @specie.id %>"
+           data-confirm="Are You Sure?"
+           data-method="delete"
+           rel="nofollow">Delete Species</a>
 
-<%= button_to 'Delete Species',{ action: "destroy", id: @specie.id },
-                                method: :delete, data: { confirm: "Are you sure?"} %>
 
 <h3>Sightings</h3>
 <ul>
   <% @specie.sightings.each do |sighting| %>
-    <li><%= sighting.date.strftime("%b %e, %Y") %>  |  <a href="/species/<%= @specie.id %>/sightings/<%= sighting.id %>/edit">EDIT</a></li>
+    <li><%= sighting.date.strftime("%b %e, %Y") %>  |  <a href="/species/<%= @specie.id %>/sightings/<%= sighting.id %>/edit">EDIT</a>
+      <a href="/species/<%= @specie.id %>/sightings/<%= sighting.id %>"
+                data-confirm="Are You Sure?"
+                data-method="delete"
+                rel="nofollow">DELETE</a>
+    </li>
   <% end %>
 </ul>
-
-<%= params.inspect %>
-
 
 <h3>Add a Sighting</h3>
 <form action="/species/<%= @specie.id %>" method="post">
