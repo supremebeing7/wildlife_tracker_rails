@@ -1,7 +1,7 @@
 <h1>Wildlife Tracker</h1>
 
 <ul>
-  <% @species.each do |specie| %>
+  <% Specie.all.each do |specie| %>
     <li><a href="/species/<%=specie.id%>"><%= specie.name %></a></li>
   <% end %>
 </ul>
@@ -9,8 +9,27 @@
 <h2>Add Species</h2>
 
 <form action="/species/" method="post">
-  <!-- <input name="_method" type="hidden" value="post"> -->
   <label for="specie_name">Name</label>
   <input id="specie_name" name="specie[name]" type="text">
   <button>Add species</button>
+</form>
+
+<ul>
+  <% Region.all.each do |region| %>
+    <li><%= region.name %></a>
+      <a href="/regions/<%= region.id %>"
+           data-confirm="Are You Sure?"
+           data-method="delete"
+           rel="nofollow">DELETE</a>
+    </li>
+  <% end %>
+</ul>
+
+
+<h2>Add Region</h2>
+
+<form action="/regions/" method="post">
+  <label for="region_name">Name</label>
+  <input id="region_name" name="region[name]" type="text">
+  <button>Add region</button>
 </form>
