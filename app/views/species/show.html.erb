@@ -11,10 +11,15 @@
   </ul>
 <% end %>
 
+
 <form action="/species/<%= @specie.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
   <label for="specie_name">Name</label>
   <input id="specie_name" name="specie[name]" type="text" value="<%= @specie.name %>">
-  <button>Update Species</button>
+  <br /><button>Update Species</button>
 </form>
-<p><a href="/specie">Return to Wildlife Tracker</a></p>
+
+<%= button_to 'Delete Species',{ action: "destroy", id: @specie.id },
+                                method: :delete, data: { confirm: "Are you sure?"} %>
+
+<p><a href="/">Return to Wildlife Tracker</a></p>
