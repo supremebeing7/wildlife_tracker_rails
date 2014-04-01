@@ -1,0 +1,6 @@
+<h1>Sighting Updated!</h1>
+
+<h2>Your species - <%= Specie.find(@sighting.specie_id).name %> - has been successfully updated with the sighting - <%= @sighting.date %>.</h2>
+
+<p><a href="/species/<%= Specie.find(@sighting.specie_id).id %>">Return to <%= Specie.find(@sighting.specie_id).name %> page</a></p>
+<p><a href="/">Return to Wildlife Tracker Home</a></p>

@@ -1,7 +1,6 @@
 <h1><%= @specie.name %></h1>
 
-
-<h2> Edit Species </h2>
+<h3> Edit Species </h3>
 <% if @specie.errors.any? %>
   <h3>Please fix the following errors:</h3>
   <ul>
@@ -14,12 +13,30 @@
 
 <form action="/species/<%= @specie.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
-  <label for="specie_name">Name</label>
+  <label for="specie_name">Name:</label>
   <input id="specie_name" name="specie[name]" type="text" value="<%= @specie.name %>">
-  <br /><button>Update Species</button>
+  <br /><button>Rename Species</button>
 </form>
 
 <%= button_to 'Delete Species',{ action: "destroy", id: @specie.id },
                                 method: :delete, data: { confirm: "Are you sure?"} %>
+
+<h3>Sightings</h3>
+<ul>
+  <% @specie.sightings.each do |sighting| %>
+    <li><%= sighting.date.strftime("%b %e, %Y") %>  |  <a href="/species/<%= @specie.id %>/sightings/<%= sighting.id %>/edit">EDIT</a></li>
+  <% end %>
+</ul>
+
+<%= params.inspect %>
+
+
+<h3>Add a Sighting</h3>
+<form action="/species/<%= @specie.id %>" method="post">
+  <label for="sighting_date">Date:</label>
+  <input id="sighting_date" name="sighting[date]" type="text">
+  <input id="sighting_specie" name="sighting[species_id]" type="hidden" value="<%= @specie.id %>">
+  <br /><button>Add a Sighting</button>
+</form>
 
 <p><a href="/">Return to Wildlife Tracker</a></p>
