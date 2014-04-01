@@ -1,5 +1,9 @@
 <h1>Sightings Report</h1>
 
+<% if @sightings.count == 0 %>
+  <h3>No sightings during that time period in that region.</h3>
+<% end %>
+
 <ul>
 <% @sightings.each do |sighting| %>
   <li><%= sighting.specie.name %> sighted on <%= sighting.date.strftime("%b %e, %Y") %>.<br />

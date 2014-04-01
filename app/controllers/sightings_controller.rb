@@ -1,7 +1,11 @@
 class SightingsController < ApplicationController
 
   def index
-    @sightings = Sighting.where(date: params[:start_date]..params[:end_date])
+    if params[:region_id].to_i == 0
+      @sightings = Sighting.where(date: params[:start_date]..params[:end_date])
+    else
+      @sightings = Sighting.where(date: params[:start_date]..params[:end_date], region_id: params[:region_id])
+    end
     render('sightings/index.html.erb')
   end
 

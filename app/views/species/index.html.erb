@@ -15,12 +15,12 @@
 </form>
 
 <ul>
-  <% Region.all.each do |region| %>
-    <li><%= region.name %></a>
-      <a href="/regions/<%= region.id %>"
+  <% Region.all.order(:name).each do |region| %>
+    <li><%= region.name %></a>  |
+        <a href="/regions/<%= region.id %>"
            data-confirm="Are You Sure?"
            data-method="delete"
-           rel="nofollow">DELETE</a>
+           rel="nofollow">(del)</a>
     </li>
   <% end %>
 </ul>
@@ -34,7 +34,8 @@
   <button>Add region</button>
 </form>
 
-<h3>Sightings Report</h3>
+
+<h2>Sightings Report</h2>
 
 <p>For which dates would you like to view sightings?</p>
 <form action="/sightings" method="get">
@@ -42,5 +43,11 @@
   <input id="sightings_start_date" name="start_date" type="text">
   <label for="sightings_end_date">End date</label>
   <input id="sightings_end_date" name="end_date" type="text">
+  <select name="region_id">
+    <option value="0">All Regions</option>
+    <% Region.all.order(:name).each do |region| %>
+      <option value="<%= region.id %>"><%= region.name %></option>
+    <% end %>
+  </select>
   <button>Run report</button>
 </form>
