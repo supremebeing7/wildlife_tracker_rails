@@ -1,5 +1,10 @@
 class SightingsController < ApplicationController
 
+  def index
+    @sightings = Sighting.where(date: params[:start_date]..params[:end_date])
+    render('sightings/index.html.erb')
+  end
+
   def new
     @sighting = Sighting.new
     render('species/show.html.erb')

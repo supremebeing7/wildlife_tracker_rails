@@ -1,0 +1,13 @@
+<h1>Sightings Report</h1>
+
+<ul>
+<% @sightings.each do |sighting| %>
+  <li><%= sighting.specie.name %> sighted on <%= sighting.date.strftime("%b %e, %Y") %>.<br />
+  <% if sighting.region != nil %>
+    Location: <%= sighting.location %> in the <%= sighting.region.name %> region.
+  <% else %>
+    Location: <%= sighting.location %>
+  <% end %>
+  </li><br />
+<% end %>
+</ul>

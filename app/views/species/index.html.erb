@@ -33,3 +33,14 @@
   <input id="region_name" name="region[name]" type="text">
   <button>Add region</button>
 </form>
+
+<h3>Sightings Report</h3>
+
+<p>For which dates would you like to view sightings?</p>
+<form action="/sightings" method="get">
+  <label for="sightings_start_date">Start date</label>
+  <input id="sightings_start_date" name="start_date" type="text">
+  <label for="sightings_end_date">End date</label>
+  <input id="sightings_end_date" name="end_date" type="text">
+  <button>Run report</button>
+</form>
